@@ -7,4 +7,6 @@ import com.yurisoares.blogspringmongo.domain.User;
 public interface IUserService {
 
 	public List<User> findAll();
+	
+	public User findById(final String id);
 }
