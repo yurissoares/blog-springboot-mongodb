@@ -14,4 +14,6 @@ public interface IUserService {
 	public User insert(final User user);
 	
 	public User fromDTO(final UserDTO userDto);
+	
+	public void delete(final String id);
 }

@@ -37,5 +37,12 @@ public class UserService implements IUserService {
 	public User fromDTO(UserDTO userDto) {
 		return new User(userDto.getId(), userDto.getName(), userDto.getEmail());
 	}
+
+	@Override
+	public void delete(String id) {
+		//O que eh feito com o objeto que eh retornado no metodo abaixo?
+		this.findById(id);
+		this.userRepository.deleteById(id);
+	}
 	
 }

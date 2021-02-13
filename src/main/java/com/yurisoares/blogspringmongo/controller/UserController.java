@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +47,13 @@ public class UserController {
 	public ResponseEntity<Void> insert(@RequestBody final UserDTO userDto) {
 		User user = userService.fromDTO(userDto);
 		user = userService.insert(user);
-		//TODO: Uri nao esta funcionando
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable final String id) {
+		this.userService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }
